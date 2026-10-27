@@ -1,4 +1,4 @@
-# # Operaciones con Conjuntos
+# Operaciones con Conjuntos
 
 Proyecto final del curso de **Matemática Discreta**.
 
