@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Final - Matemática Discreta</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- MENÚ PRINCIPAL -->
+  <nav class="menu">
+    <span class="logo">∪ ∩</span>
+    <ul>
+      <li><a href="#" data-pagina="inicio" onclick="mostrar('inicio')">INICIO</a></li>
+      <li class="desplegable">
+        <a href="#" id="btn-conjuntos">Conjuntos ▾</a>
+        <ul class="submenu">
+          <li><a href="#" data-pagina="union" onclick="mostrar('union')">∪ &nbsp;Unión</a></li>
+          <li><a href="#" data-pagina="interseccion" onclick="mostrar('interseccion')">∩ &nbsp;Intersección</a></li>
+          <li><a href="#" data-pagina="diferencia" onclick="mostrar('diferencia')">− &nbsp;Diferencia</a></li>
+          <li><a href="#" data-pagina="simetrica" onclick="mostrar('simetrica')">Δ &nbsp;Diferencia simétrica</a></li>
+          <li><a href="#" data-pagina="complemento" onclick="mostrar('complemento')">′ &nbsp;Complemento</a></li>
+        </ul>
+      </li>
+      <li><a href="#" data-pagina="nosotros" onclick="mostrar('nosotros')">Sobre nosotros</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- INICIO -->
+    <section id="inicio" class="pagina">
+
+      <!-- Portada -->
+      <div class="portada">
+        <span class="simbolo-fondo s1" aria-hidden="true">∪</span>
+        <span class="simbolo-fondo s2" aria-hidden="true">∩</span>
+        <span class="simbolo-fondo s3" aria-hidden="true">∅</span>
+        <span class="simbolo-fondo s4" aria-hidden="true">∈</span>
+
+        <div class="portada-texto">
+          <p class="etiqueta">Proyecto final · Matemática Discreta</p>
+          <h1>Operaciones con Conjuntos</h1>
+          <p class="subtitulo">Calcula la unión, la intersección, la diferencia, la diferencia simétrica
+             y el complemento, y míralos en un diagrama de Venn.</p>
+          <div class="botones-portada">
+            <a href="#" class="boton-claro" onclick="mostrar('union')">Empezar</a>
+            <a href="#" class="boton-borde" onclick="mostrar('nosotros')">Sobre nosotros</a>
+          </div>
+        </div>
+
+        <!-- Diagrama de Venn de la portada (solo decorativo) -->
+        <svg class="portada-venn" viewBox="0 0 300 220" aria-hidden="true">
+          <defs><clipPath id="pv-a"><circle cx="118" cy="112" r="72"/></clipPath></defs>
+          <rect class="pv-u" x="4" y="4" width="292" height="212" rx="12"/>
+          <text class="pv-letra-u" x="16" y="27">U</text>
+          <circle class="pv-c" cx="118" cy="112" r="72"/>
+          <circle class="pv-c" cx="182" cy="112" r="72"/>
+          <circle class="pv-lente" cx="182" cy="112" r="72" clip-path="url(#pv-a)"/>
+          <circle class="pv-borde" cx="118" cy="112" r="72"/>
+          <circle class="pv-borde" cx="182" cy="112" r="72"/>
+          <text class="pv-letra" x="72" y="80">A</text>
+          <text class="pv-letra" x="218" y="80">B</text>
+          <text class="pv-el" x="78" y="118" text-anchor="middle">1, 2</text>
+          <text class="pv-el oscuro" x="150" y="118" text-anchor="middle">3</text>
+          <text class="pv-el" x="222" y="118" text-anchor="middle">4, 5</text>
+        </svg>
+      </div>
+
+      <!-- Operaciones -->
+      <h2 class="titulo-seccion">Operaciones disponibles</h2>
+      <div class="tarjetas">
+
+        <a href="#" class="tarjeta" onclick="mostrar('union')">
+          <svg class="icono-venn" viewBox="0 0 100 70" aria-hidden="true">
+            <circle class="v" cx="38" cy="35" r="22"/><circle class="v" cx="62" cy="35" r="22"/>
+            <circle class="a" cx="38" cy="35" r="22"/><circle class="b" cx="62" cy="35" r="22"/>
+          </svg>
+          <b>Unión (A ∪ B)</b><small>Elementos de A o de B</small>
+        </a>
+
+        <a href="#" class="tarjeta" onclick="mostrar('interseccion')">
+          <svg class="icono-venn" viewBox="0 0 100 70" aria-hidden="true">
+            <defs><clipPath id="ic-int"><circle cx="38" cy="35" r="22"/></clipPath></defs>
+            <circle class="v" cx="62" cy="35" r="22" clip-path="url(#ic-int)"/>
+            <circle class="a" cx="38" cy="35" r="22"/><circle class="b" cx="62" cy="35" r="22"/>
+          </svg>
+          <b>Intersección (A ∩ B)</b><small>Elementos de A y de B a la vez</small>
+        </a>
+
+        <a href="#" class="tarjeta" onclick="mostrar('diferencia')">
+          <svg class="icono-venn" viewBox="0 0 100 70" aria-hidden="true">
+            <circle class="v" cx="38" cy="35" r="22"/><circle class="h" cx="62" cy="35" r="22"/>
+            <circle class="a" cx="38" cy="35" r="22"/><circle class="b" cx="62" cy="35" r="22"/>
+          </svg>
+          <b>Diferencia (A − B)</b><small>Elementos de A que no están en B</small>
+        </a>
+
+        <a href="#" class="tarjeta" onclick="mostrar('simetrica')">
+          <svg class="icono-venn" viewBox="0 0 100 70" aria-hidden="true">
+            <defs><clipPath id="ic-sim"><circle cx="38" cy="35" r="22"/></clipPath></defs>
+            <circle class="v" cx="38" cy="35" r="22"/><circle class="v" cx="62" cy="35" r="22"/>
+            <circle class="h" cx="62" cy="35" r="22" clip-path="url(#ic-sim)"/>
+            <circle class="a" cx="38" cy="35" r="22"/><circle class="b" cx="62" cy="35" r="22"/>
+          </svg>
+          <b>Diferencia simétrica (A Δ B)</b><small>Elementos que están en A o en B, pero no en los dos</small>
+        </a>
+
+        <a href="#" class="tarjeta" onclick="mostrar('complemento')">
+          <svg class="icono-venn" viewBox="0 0 100 70" aria-hidden="true">
+            <rect class="v" x="3" y="3" width="94" height="64" rx="6"/>
+            <circle class="h" cx="50" cy="35" r="20"/>
+            <rect class="u" x="3" y="3" width="94" height="64" rx="6"/>
+            <circle class="a" cx="50" cy="35" r="20"/>
+          </svg>
+          <b>Complemento (A′)</b><small>Lo que le falta a A para llegar al universo U</small>
+        </a>
+
+      </div>
+
+      <!-- Cómo se usa -->
+      <h2 class="titulo-seccion">¿Cómo se usa?</h2>
+      <ol class="pasos-uso">
+        <li><span class="num">1</span>
+            <div><b>Elige una operación</b><br>en el menú Conjuntos o en las tarjetas de arriba.</div></li>
+        <li><span class="num">2</span>
+            <div><b>Escribe los conjuntos</b><br>con los elementos separados por comas, por ejemplo <code>1, 2, 3, 4</code>.
+                 Si lo necesitas, añade más conjuntos (hasta 5).</div></li>
+        <li><span class="num">3</span>
+            <div><b>Presiona Calcular</b><br>y mira el resultado junto a su diagrama de Venn.</div></li>
+      </ol>
+    </section>
+
+    <!-- UNIÓN -->
+    <section id="union" class="pagina oculto">
+      <h2>Unión <span class="formula-titulo" id="union-formula">A ∪ B</span></h2>
+      <p>La unión tiene todos los elementos que están en A o en B (sin repetir).</p>
+      <div class="columnas">
+        <div class="formulario">
+          <div id="union-campos"></div>
+          <div class="fila-conjuntos">
+            <button class="mini" id="union-mas" onclick="agregarConjunto('union')">+ Añadir conjunto</button>
+            <button class="mini" id="union-menos" onclick="quitarConjunto('union')">− Quitar conjunto</button>
+          </div>
+          <button onclick="calcular('union')">Calcular</button>
+          <button class="secundario" onclick="ejemplo('union')">Ejemplo</button>
+          <button class="secundario" onclick="limpiar('union')">Limpiar</button>
+        </div>
+        <div class="venn" id="union-venn"></div>
+      </div>
+      <div class="resultado" id="union-res"></div>
+    </section>
+
+    <!-- INTERSECCIÓN -->
+    <section id="interseccion" class="pagina oculto">
+      <h2>Intersección <span class="formula-titulo" id="inter-formula">A ∩ B</span></h2>
+      <p>La intersección tiene los elementos que están en A y también en B (en todos los conjuntos a la vez).</p>
+      <div class="columnas">
+        <div class="formulario">
+          <div id="inter-campos"></div>
+          <div class="fila-conjuntos">
+            <button class="mini" id="inter-mas" onclick="agregarConjunto('inter')">+ Añadir conjunto</button>
+            <button class="mini" id="inter-menos" onclick="quitarConjunto('inter')">− Quitar conjunto</button>
+          </div>
+          <button onclick="calcular('inter')">Calcular</button>
+          <button class="secundario" onclick="ejemplo('inter')">Ejemplo</button>
+          <button class="secundario" onclick="limpiar('inter')">Limpiar</button>
+        </div>
+        <div class="venn" id="inter-venn"></div>
+      </div>
+      <div class="resultado" id="inter-res"></div>
+    </section>
+
+    <!-- DIFERENCIA -->
+    <section id="diferencia" class="pagina oculto">
+      <h2>Diferencia <span class="formula-titulo" id="dif-formula">A − B</span></h2>
+      <p>La diferencia tiene los elementos que están en un conjunto pero no en el otro.
+         Con más de dos conjuntos se le quitan los elementos de todos los demás: A − B − C = A − (B ∪ C).</p>
+      <div class="columnas">
+        <div class="formulario">
+          <div id="dif-campos"></div>
+          <div class="fila-conjuntos">
+            <button class="mini" id="dif-mas" onclick="agregarConjunto('dif')">+ Añadir conjunto</button>
+            <button class="mini" id="dif-menos" onclick="quitarConjunto('dif')">− Quitar conjunto</button>
+          </div>
+          <label>Diferencia a calcular</label>
+          <select id="dif-cual" onchange="cambiarDiferencia()"></select>
+          <button onclick="calcular('dif')">Calcular</button>
+          <button class="secundario" onclick="ejemplo('dif')">Ejemplo</button>
+          <button class="secundario" onclick="limpiar('dif')">Limpiar</button>
+        </div>
+        <div class="venn" id="dif-venn"></div>
+      </div>
+      <div class="resultado" id="dif-res"></div>
+    </section>
+
+    <!-- DIFERENCIA SIMÉTRICA -->
+    <section id="simetrica" class="pagina oculto">
+      <h2>Diferencia simétrica <span class="formula-titulo" id="sim-formula">A Δ B</span></h2>
+      <p>Tiene los elementos que están en A o en B, pero no en los dos a la vez:
+         A Δ B = (A − B) ∪ (B − A).</p>
+      <p class="nota">Con más de dos conjuntos se aplica de izquierda a derecha, y quedan los elementos
+         que pertenecen a un número impar de conjuntos.</p>
+      <div class="columnas">
+        <div class="formulario">
+          <div id="sim-campos"></div>
+          <div class="fila-conjuntos">
+            <button class="mini" id="sim-mas" onclick="agregarConjunto('sim')">+ Añadir conjunto</button>
+            <button class="mini" id="sim-menos" onclick="quitarConjunto('sim')">− Quitar conjunto</button>
+          </div>
+          <button onclick="calcular('sim')">Calcular</button>
+          <button class="secundario" onclick="ejemplo('sim')">Ejemplo</button>
+          <button class="secundario" onclick="limpiar('sim')">Limpiar</button>
+        </div>
+        <div class="venn" id="sim-venn"></div>
+      </div>
+      <div class="resultado" id="sim-res"></div>
+    </section>
+
+    <!-- COMPLEMENTO -->
+    <section id="complemento" class="pagina oculto">
+      <h2>Complemento <span class="formula-titulo">A′</span></h2>
+      <p>El complemento tiene los elementos del conjunto universal U que no están en A.</p>
+      <div class="columnas">
+        <div class="formulario">
+          <label>Conjunto universal U</label>
+          <input type="text" id="comp-u" placeholder="Ejemplo: 1, 2, 3, 4, 5, 6, 7, 8"
+                 onkeydown="if (event.key === 'Enter') calcularComplemento()">
+          <label>Conjunto A (debe estar dentro de U)</label>
+          <input type="text" id="comp-a" placeholder="Ejemplo: 2, 4, 6"
+                 onkeydown="if (event.key === 'Enter') calcularComplemento()">
+          <button onclick="calcularComplemento()">Calcular</button>
+          <button class="secundario" onclick="ejemploComplemento()">Ejemplo</button>
+          <button class="secundario" onclick="limpiarComplemento()">Limpiar</button>
+        </div>
+        <div class="venn" id="comp-venn"></div>
+      </div>
+      <div class="resultado" id="comp-res"></div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section id="nosotros" class="pagina oculto">
+      <h2>Sobre nosotros</h2>
+      <p>Estudiantes de Ingeniería en Sistemas de la Universidad Mariano Gálvez.
+         Integrantes del grupo:</p>
+      <div class="integrantes">
+
+        <div class="persona">
+          <div class="foto"><span>1</span><img src="img/integrante1.jpeg" alt="Integrante 1" onerror="this.style.display='none'"></div>
+          <p class="nombre">José Manuel Garcia Cruz</p>
+          <p class="rol">Menú principal y navegación entre páginas</p>
+        </div>
+        <div class="persona">
+          <div class="foto"><span>2</span><img src="img/integrante2.jpeg" alt="Integrante 2" onerror="this.style.display='none'"></div>
+          <p class="nombre">Alan Francisco Posadas Duarte</p>
+          <p class="rol">Unión e intersección</p>
+        </div>
+        <div class="persona">
+          <div class="foto"><span>3</span><img src="img/integrante3.jpeg" alt="Integrante 3" onerror="this.style.display='none'"></div>
+          <p class="nombre">Claudia Elisa Contreras Santos</p>
+          <p class="rol">Diferencia y diferencia simétrica</p>
+        </div>
+        <div class="persona">
+          <div class="foto"><span>4</span><img src="img/integrante4.jpeg" alt="Integrante 4" onerror="this.style.display='none'"></div>
+          <p class="nombre">Gustavo José Ortiz Vega</p>
+          <p class="rol">Complemento y validación de datos</p>
+        </div>
+        <div class="persona">
+          <div class="foto"><span>5</span><img src="img/integrante5.jpeg" alt="Integrante 5" onerror="this.style.display='none'"></div>
+          <p class="nombre">Dania Beticia Lémus Sagastume</p>
+          <p class="rol">Documentación, video y repositorio en GitHub</p>
+        </div>
+        <div class="persona">
+          <div class="foto"><span>6</span><img src="img/integrante6.jpeg" alt="Integrante 6" onerror="this.style.display='none'"></div>
+          <p class="nombre">Sayman Eliú Stephenson Osorio</p>
+          <p class="rol">Diagramas de Venn y diseño de la página</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
